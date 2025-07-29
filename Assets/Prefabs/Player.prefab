@@ -50,7 +50,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputActions: {fileID: -944628639613478452, guid: 0223e0786ca297d40bb750185105fc3b, type: 3}
-  speed: 10
+  walkingSpeed: 5
+  sprintingSpeed: 10
+  currentInteractable: {fileID: 0}
+  inventory:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!33 &3205256690631589899
 MeshFilter:
   m_ObjectHideFlags: 0

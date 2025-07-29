@@ -9,28 +9,51 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionAsset playerInputActions;
 
     [Header("Movement")]
-    [SerializeField] private float speed;
+    [SerializeField] private float walkingSpeed;
+    [SerializeField] private float sprintingSpeed;
+    private float speed;
+
     private Vector2 movement;
     private Rigidbody rb;
     private Quaternion desiredRotation;
     private float lerpTimer = .2f;
     private Coroutine lerpCoroutine;
 
+    //Interactable
+    [HideInInspector] public GameObject currentInteractable;
+
+    [Header("Inventory")]
+    public InventoryItem[] inventory;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        speed = walkingSpeed;
         playerInputActions.FindAction("Move").performed += SetMovement;
         playerInputActions.FindAction("Move").canceled += SetMovement;
         playerInputActions.FindAction("Interact").performed += SetInteraction;
-    }
-
-    public void SetInteraction(InputAction.CallbackContext value)
-    {
+        playerInputActions.FindAction("Interact").canceled += SetInteraction;
+        playerInputActions.FindAction("Sprint").performed += SetSprint;
+        playerInputActions.FindAction("Sprint").canceled += SetSprint;
     }
 
     public void SetMovement(InputAction.CallbackContext value)
     {
         movement = value.ReadValue<Vector2>();
+    }
+
+    public void SetInteraction(InputAction.CallbackContext value)
+    {
+        if (value.ReadValueAsButton())
+        {
+            if (currentInteractable != null) currentInteractable.GetComponent<Interactable>().Use(this);
+        }
+    }
+
+    public void SetSprint(InputAction.CallbackContext value)
+    {
+        if (value.ReadValueAsButton()) speed = sprintingSpeed;
+        else speed = walkingSpeed;
     }
 
     private void FixedUpdate()
@@ -60,6 +83,28 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         transform.localRotation = desiredRotation;
+    }
+
+    public void AddItemInInventory(InventoryItem item)
+    {
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i].type == CollectableType.None)
+            {
+                inventory[i] = item;
+                break;
+            }
+        }
+    }
+
+    public void RemoveItemFromInventory()
+    {
+
+    }
+
+    public void SwapItemInInventory()
+    {
+
     }
 
     private void OnEnable()
