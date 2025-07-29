@@ -8,12 +8,14 @@ public class UIDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private RectTransform rt;
     private Image image;
     [HideInInspector] public int dragIndex;
+    [HideInInspector] public bool isInventory;
 
     private void Start()
     {
         originalParent = transform.GetComponentInParent<UISlot>();
         rt = GetComponent<RectTransform>();
         image = GetComponent<Image>();
+        isInventory = originalParent.isPlayerInventory;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {

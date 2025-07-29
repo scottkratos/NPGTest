@@ -1,18 +1,10 @@
 using UnityEngine;
 
-public class Collectable : MonoBehaviour, IInteractable
+public class BoxDeposit : MonoBehaviour, IInteractable
 {
-    [SerializeField] private InventoryItem item;
-    [SerializeField] private string UUID;
-
-    private void Start()
-    {
-        item.mesh = GetComponent<MeshFilter>().mesh;
-    }
-
     public void Use(PlayerController player)
     {
-        if (player.AddItemInInventory(item)) Destroy(gameObject);
+        UIManager.instance.OpenBox();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,13 +24,4 @@ public class Collectable : MonoBehaviour, IInteractable
             if (player.currentInteractable == gameObject) player.currentInteractable = null;
         }
     }
-}
-
-public enum CollectableType
-{
-    None,
-    Heal,
-    Weapon,
-    PistolAmmo,
-    KeyItem
 }

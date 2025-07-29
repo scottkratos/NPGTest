@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     private bool isPaused;
+    public InventoryItem[] boxItems;
+    public List<string> collectedItems = new List<string>();
 
     private void Awake()
     {

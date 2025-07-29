@@ -10,11 +10,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject header;
     [SerializeField] private GameObject inventory;
     [SerializeField] private GameObject blackScreen;
+    [SerializeField] private GameObject itemPreview;
+    [SerializeField] private GameObject boxPanel;
+    [SerializeField] private GameObject inventoryGrid;
+    [SerializeField] private GameObject slotPrefab;
 
     [Header("Inventory References")]
-    [SerializeField] private UISlot[] uiSlots;
+    private List<UISlot> inventoryUISlots = new List<UISlot>();
     [SerializeField] private TMPro.TextMeshProUGUI itemName;
     [SerializeField] private TMPro.TextMeshProUGUI itemDesc;
+
+    [Header("Box References")]
+    private List<UISlot> boxUISlots = new List<UISlot>();
 
     public static UIManager instance;
 
@@ -22,6 +29,23 @@ public class UIManager : MonoBehaviour
     {
         instance = this;
         StartCoroutine(Fade(false));
+        for (int i = 0; i < GameManager.instance.boxItems.Length; i++)
+        {
+            GameObject slot = Instantiate(slotPrefab, boxPanel.transform.GetChild(0));
+            slot.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 100);
+            boxUISlots.Add(slot.GetComponent<UISlot>());
+        }
+
+        for (int i = 0; i < PlayerController.instance.inventory.Length; i++)
+        {
+            GameObject slot = Instantiate(slotPrefab, inventoryGrid.transform);
+            slot.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 180);
+            slot.GetComponent<UISlot>().isPlayerInventory = true;
+            inventoryUISlots.Add(slot.GetComponent<UISlot>());
+        }
+
+        PopulateInventory();
+        PopulateBox();
     }
 
     //BlackScreen management
@@ -49,14 +73,16 @@ public class UIManager : MonoBehaviour
         PopulateInventory();
         inGame.SetActive(false);
         header.SetActive(true);
+        itemPreview.SetActive(true);
+        boxPanel.SetActive(false);
         inventory.SetActive(true);
     }
 
     public void PopulateInventory()
     {
-        for (int i = 0; i < uiSlots.Length; i++)
+        for (int i = 0; i < inventoryUISlots.Count; i++)
         {
-            uiSlots[i].FillInventorySlot(PlayerController.instance.inventory[i]);
+            inventoryUISlots[i].FillInventorySlot(PlayerController.instance.inventory[i]);
         }
     }
 
@@ -69,13 +95,13 @@ public class UIManager : MonoBehaviour
 
     public void HideItemOptions()
     {
-        for (int i = 0; i < uiSlots.Length; i++)
+        for (int i = 0; i < inventoryUISlots.Count; i++)
         {
-            uiSlots[i].ShowItemOptions(false);
+            inventoryUISlots[i].ShowItemOptions(false);
         }
     }
 
-    public void ChangeSlotContents(int slot1, int slot2)
+    public void ChangeInventorySlotContents(int slot1, int slot2)
     {
         InventoryItem item1 = new InventoryItem();
         InventoryItem item2 = new InventoryItem();
@@ -102,5 +128,78 @@ public class UIManager : MonoBehaviour
         inGame.SetActive(true);
         header.SetActive(false);
         inventory.SetActive(false);
+    }
+
+    //Box Management
+    public void OpenBox()
+    {
+        PopulateInventory();
+        inGame.SetActive(false);
+        header.SetActive(true);
+        itemPreview.SetActive(false);
+        boxPanel.SetActive(true);
+        inventory.SetActive(true);
+    }
+
+    public void PopulateBox()
+    {
+        for (int i = 0; i < boxUISlots.Count; i++)
+        {
+            boxUISlots[i].FillInventorySlot(GameManager.instance.boxItems[i]);
+        }
+    }
+
+    public void ChangeBoxSlotContents(int slot1, int slot2)
+    {
+        InventoryItem item1 = new InventoryItem();
+        InventoryItem item2 = new InventoryItem();
+        item1.itemName = GameManager.instance.boxItems[slot1].itemName;
+        item1.itemDesc = GameManager.instance.boxItems[slot1].itemDesc;
+        item1.type = GameManager.instance.boxItems[slot1].type;
+        item1.ammount = GameManager.instance.boxItems[slot1].ammount;
+        item1.sprite = GameManager.instance.boxItems[slot1].sprite;
+        item1.mesh = GameManager.instance.boxItems[slot1].mesh;
+        item2.itemName = GameManager.instance.boxItems[slot2].itemName;
+        item2.itemDesc = GameManager.instance.boxItems[slot2].itemDesc;
+        item2.type = GameManager.instance.boxItems[slot2].type;
+        item2.ammount = GameManager.instance.boxItems[slot2].ammount;
+        item2.sprite = GameManager.instance.boxItems[slot2].sprite;
+        item2.mesh = GameManager.instance.boxItems[slot2].mesh;
+
+        GameManager.instance.boxItems[slot1] = item2;
+        GameManager.instance.boxItems[slot2] = item1;
+        PopulateBox();
+    }
+
+    public void ChangeBoxAndInventoryContents(int slot1, int slot2, bool isAInventory)
+    {
+        InventoryItem item1 = new InventoryItem();
+        InventoryItem item2 = new InventoryItem();
+        item1.itemName = isAInventory ? PlayerController.instance.inventory[slot1].itemName : GameManager.instance.boxItems[slot1].itemName;
+        item1.itemDesc = isAInventory ? PlayerController.instance.inventory[slot1].itemDesc : GameManager.instance.boxItems[slot1].itemDesc;
+        item1.type = isAInventory ? PlayerController.instance.inventory[slot1].type : GameManager.instance.boxItems[slot1].type;
+        item1.ammount = isAInventory ? PlayerController.instance.inventory[slot1].ammount : GameManager.instance.boxItems[slot1].ammount;
+        item1.sprite = isAInventory ? PlayerController.instance.inventory[slot1].sprite : GameManager.instance.boxItems[slot1].sprite;
+        item1.mesh = isAInventory ? PlayerController.instance.inventory[slot1].mesh : GameManager.instance.boxItems[slot1].mesh;
+        item2.itemName = isAInventory ? GameManager.instance.boxItems[slot2].itemName : PlayerController.instance.inventory[slot2].itemName;
+        item2.itemDesc = isAInventory ? GameManager.instance.boxItems[slot2].itemDesc : PlayerController.instance.inventory[slot2].itemDesc;
+        item2.type = isAInventory ? GameManager.instance.boxItems[slot2].type : PlayerController.instance.inventory[slot2].type;
+        item2.ammount = isAInventory ? GameManager.instance.boxItems[slot2].ammount : PlayerController.instance.inventory[slot2].ammount;
+        item2.sprite = isAInventory ? GameManager.instance.boxItems[slot2].sprite : PlayerController.instance.inventory[slot2].sprite;
+        item2.mesh = isAInventory ? GameManager.instance.boxItems[slot2].mesh : PlayerController.instance.inventory[slot2].mesh;
+
+        if (isAInventory)
+        {
+            PlayerController.instance.inventory[slot1] = item2;
+            GameManager.instance.boxItems[slot2] = item1;
+        }
+        else
+        {
+            GameManager.instance.boxItems[slot1] = item2;
+            PlayerController.instance.inventory[slot2] = item1;
+        }
+        
+        PopulateInventory();
+        PopulateBox();
     }
 }

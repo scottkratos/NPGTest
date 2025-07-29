@@ -13,6 +13,7 @@ public class UISlot : Selectable, IPointerClickHandler, IDropHandler
     public TMPro.TextMeshProUGUI equip;
     private int slotIndex;
     [HideInInspector] public InventoryItem currentItem;
+    public bool isPlayerInventory;
 
     protected override void Start()
     {
@@ -71,15 +72,23 @@ public class UISlot : Selectable, IPointerClickHandler, IDropHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         UIManager.instance.HideItemOptions();
+        if (!isPlayerInventory) return;
         if (currentItem.type != CollectableType.None) ShowItemOptions(!slotOption.activeSelf);
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         UIDraggable drag = eventData.pointerDrag.GetComponent<UIDraggable>();
-        if (drag.dragIndex == slotIndex) return;
+        if (drag == null) return;
 
-        UIManager.instance.ChangeSlotContents(drag.dragIndex, slotIndex);
+        if (drag.isInventory == isPlayerInventory)
+        {
+            if (drag.dragIndex == slotIndex) return;
+            if (isPlayerInventory) UIManager.instance.ChangeInventorySlotContents(drag.dragIndex, slotIndex);
+            else UIManager.instance.ChangeBoxSlotContents(drag.dragIndex, slotIndex);
+        }
+        else UIManager.instance.ChangeBoxAndInventoryContents(drag.dragIndex, slotIndex, drag.isInventory);
+
         UIManager.instance.ShowItemInformation(currentItem);
     }
 

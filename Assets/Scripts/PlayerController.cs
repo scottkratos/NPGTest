@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (value.ReadValueAsButton())
         {
-            if (currentInteractable != null) currentInteractable.GetComponent<Interactable>().Use(this);
+            if (currentInteractable != null) currentInteractable.GetComponent<IInteractable>().Use(this);
         }
     }
 
