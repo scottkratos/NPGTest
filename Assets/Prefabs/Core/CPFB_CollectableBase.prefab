@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2708051595694499426}
   - component: {fileID: 5941114773826154576}
   m_Layer: 0
-  m_Name: PFB_CollectableBase
+  m_Name: CPFB_CollectableBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

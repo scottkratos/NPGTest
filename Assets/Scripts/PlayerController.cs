@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetInventory(InputAction.CallbackContext value)
     {
-        if (value.ReadValueAsButton()) GameManager.instance.PauseGame();
+        if (value.ReadValueAsButton()) GameManager.instance.OpenInventory();
     }
 
     private void FixedUpdate()

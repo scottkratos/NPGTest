@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class BoxDeposit : MonoBehaviour, IInteractable
+public class InteractiveBase : MonoBehaviour, IInteractable
 {
-    public void Use(PlayerController player)
+    public virtual void Use(PlayerController player)
     {
-        UIManager.instance.OpenBox();
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<PlayerController>() != null)
         {
@@ -16,7 +16,7 @@ public class BoxDeposit : MonoBehaviour, IInteractable
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected virtual void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<PlayerController>() != null)
         {

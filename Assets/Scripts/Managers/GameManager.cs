@@ -18,10 +18,18 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void PauseGame()
+    public void OpenInventory()
     {
         if (isPaused) UIManager.instance.CloseInventory();
         else UIManager.instance.OpenInventory();
+
+        isPaused = !isPaused;
+    }
+
+    public void OpenBox()
+    {
+        if (isPaused) UIManager.instance.CloseInventory();
+        else UIManager.instance.OpenBox();
 
         isPaused = !isPaused;
     }
