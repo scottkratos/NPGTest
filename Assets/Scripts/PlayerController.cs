@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkingSpeed;
     [SerializeField] private float sprintingSpeed;
     private float speed;
-
     private Vector2 movement;
     private Rigidbody rb;
     private Quaternion desiredRotation;
@@ -24,9 +23,22 @@ public class PlayerController : MonoBehaviour
 
     [Header("Inventory")]
     public InventoryItem[] inventory;
+    public InventoryItem[] maxItemTypeBySlot;
+
+    [Header("Combat")]
+    [SerializeField] private int health;
+
+    public static PlayerController instance;
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+
         rb = GetComponent<Rigidbody>();
         speed = walkingSpeed;
         playerInputActions.FindAction("Move").performed += SetMovement;
@@ -35,6 +47,8 @@ public class PlayerController : MonoBehaviour
         playerInputActions.FindAction("Interact").canceled += SetInteraction;
         playerInputActions.FindAction("Sprint").performed += SetSprint;
         playerInputActions.FindAction("Sprint").canceled += SetSprint;
+        playerInputActions.FindAction("Pause").performed += SetPause;
+        playerInputActions.FindAction("Pause").canceled += SetPause;
     }
 
     public void SetMovement(InputAction.CallbackContext value)
@@ -54,6 +68,11 @@ public class PlayerController : MonoBehaviour
     {
         if (value.ReadValueAsButton()) speed = sprintingSpeed;
         else speed = walkingSpeed;
+    }
+
+    public void SetPause(InputAction.CallbackContext value)
+    {
+        if (value.ReadValueAsButton()) GameManager.instance.PauseGame();
     }
 
     private void FixedUpdate()
@@ -85,16 +104,30 @@ public class PlayerController : MonoBehaviour
         transform.localRotation = desiredRotation;
     }
 
-    public void AddItemInInventory(InventoryItem item)
+    public bool AddItemInInventory(InventoryItem item)
     {
+        InventoryItem localItem = new InventoryItem();
+        localItem.type = item.type;
+        localItem.ammount = item.ammount;
+        InventoryItem itemRef = System.Array.Find(maxItemTypeBySlot, i => i.type == item.type);
+
         for (int i = 0; i < inventory.Length; i++)
         {
             if (inventory[i].type == CollectableType.None)
             {
                 inventory[i] = item;
-                break;
+                return true;
+            }
+            else if (inventory[i].type == item.type)
+            {
+                if (inventory[i].ammount + localItem.ammount <= itemRef.ammount)
+                {
+                    inventory[i].ammount += localItem.ammount;
+                    return true;
+                }
             }
         }
+        return false;
     }
 
     public void RemoveItemFromInventory()

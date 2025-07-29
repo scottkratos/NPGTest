@@ -11,8 +11,7 @@ public class Collectable : MonoBehaviour, Interactable
         InventoryItem item = new InventoryItem();
         item.type = type;
         item.ammount = ammount;
-        player.AddItemInInventory(item);
-        Destroy(gameObject);
+        if (player.AddItemInInventory(item)) Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)

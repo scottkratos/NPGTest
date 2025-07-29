@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7384031738499581794}
   - component: {fileID: 503735491412958328}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PFB_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,12 +54,29 @@ MonoBehaviour:
   sprintingSpeed: 10
   currentInteractable: {fileID: 0}
   inventory:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - type: 0
+    ammount: 0
+  - type: 0
+    ammount: 0
+  - type: 0
+    ammount: 0
+  - type: 0
+    ammount: 0
+  - type: 0
+    ammount: 0
+  - type: 0
+    ammount: 0
+  maxItemTypeBySlot:
+  - type: 1
+    ammount: 1
+  - type: 2
+    ammount: 1
+  - type: 3
+    ammount: 1
+  - type: 4
+    ammount: 60
+  - type: 5
+    ammount: 30
 --- !u!33 &3205256690631589899
 MeshFilter:
   m_ObjectHideFlags: 0
