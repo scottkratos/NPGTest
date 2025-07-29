@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractiveBase : MonoBehaviour, IInteractable
+public class InteractiveBase : UniqueId, IInteractable
 {
     public virtual void Use(PlayerController player)
     {

@@ -3,10 +3,10 @@ using UnityEngine;
 public class Collectable : InteractiveBase
 {
     [SerializeField] private InventoryItem item;
-    [SerializeField] private string UUID;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         item.mesh = GetComponent<MeshFilter>().mesh;
     }
 

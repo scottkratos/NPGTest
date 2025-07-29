@@ -341,6 +341,10 @@ PrefabInstance:
       value: Collectable
       objectReference: {fileID: 0}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
+      propertyPath: UUID
+      value: OZeR0zi1hODDj4y
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}
