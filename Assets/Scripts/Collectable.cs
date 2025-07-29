@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour, Interactable
 {
-    [SerializeField] private CollectableType type;
-    [SerializeField] private int ammount;
+    [SerializeField] private InventoryItem item;
     [SerializeField] private string UUID;
+
+    private void Start()
+    {
+        item.mesh = GetComponent<MeshFilter>().mesh;
+    }
 
     public void Use(PlayerController player)
     {
-        InventoryItem item = new InventoryItem();
-        item.type = type;
-        item.ammount = ammount;
         if (player.AddItemInInventory(item)) Destroy(gameObject);
     }
 
@@ -37,8 +38,7 @@ public enum CollectableType
 {
     None,
     Heal,
-    MixerHeal,
     Weapon,
     PistolAmmo,
-    ShotgunAmmo
+    KeyItem
 }

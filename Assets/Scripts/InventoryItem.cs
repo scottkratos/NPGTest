@@ -8,5 +8,5 @@ public struct InventoryItem
     public CollectableType type;
     public int ammount;
     public Sprite sprite;
-    public Mesh mesh;
+    [HideInInspector] public Mesh mesh;
 }

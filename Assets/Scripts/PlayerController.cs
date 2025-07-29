@@ -47,8 +47,8 @@ public class PlayerController : MonoBehaviour
         playerInputActions.FindAction("Interact").canceled += SetInteraction;
         playerInputActions.FindAction("Sprint").performed += SetSprint;
         playerInputActions.FindAction("Sprint").canceled += SetSprint;
-        playerInputActions.FindAction("Pause").performed += SetPause;
-        playerInputActions.FindAction("Pause").canceled += SetPause;
+        playerInputActions.FindAction("Inventory").performed += SetInventory;
+        playerInputActions.FindAction("Inventory").canceled += SetInventory;
     }
 
     public void SetMovement(InputAction.CallbackContext value)
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         else speed = walkingSpeed;
     }
 
-    public void SetPause(InputAction.CallbackContext value)
+    public void SetInventory(InputAction.CallbackContext value)
     {
         if (value.ReadValueAsButton()) GameManager.instance.PauseGame();
     }
@@ -130,12 +130,12 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public void RemoveItemFromInventory()
+    public void Heal()
     {
-
+        health = 100;
     }
 
-    public void SwapItemInInventory()
+    public void Damage(int ammount)
     {
 
     }

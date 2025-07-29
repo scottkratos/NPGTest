@@ -54,29 +54,74 @@ MonoBehaviour:
   sprintingSpeed: 10
   currentInteractable: {fileID: 0}
   inventory:
-  - type: 0
+  - itemName: 
+    itemDesc: 
+    type: 0
     ammount: 0
-  - type: 0
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 0
     ammount: 0
-  - type: 0
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 0
     ammount: 0
-  - type: 0
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 0
     ammount: 0
-  - type: 0
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 0
     ammount: 0
-  - type: 0
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 0
     ammount: 0
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
   maxItemTypeBySlot:
-  - type: 1
+  - itemName: 
+    itemDesc: 
+    type: 1
     ammount: 1
-  - type: 2
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 2
     ammount: 1
-  - type: 3
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 3
     ammount: 1
-  - type: 4
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 4
     ammount: 60
-  - type: 5
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  - itemName: 
+    itemDesc: 
+    type: 5
     ammount: 30
+    sprite: {fileID: 0}
+    mesh: {fileID: 0}
+  health: 100
 --- !u!33 &3205256690631589899
 MeshFilter:
   m_ObjectHideFlags: 0

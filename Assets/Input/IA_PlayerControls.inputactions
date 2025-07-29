@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause",
+                    "name": "Inventory",
                     "type": "Button",
                     "id": "6a259627-5674-485e-b28e-60eaa9bd878d",
                     "expectedControlType": "",
@@ -123,11 +123,11 @@
                 {
                     "name": "",
                     "id": "588bfbe1-b68e-470b-a296-30879580a800",
-                    "path": "<Keyboard>/backspace",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

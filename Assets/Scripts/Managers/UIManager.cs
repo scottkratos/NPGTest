@@ -52,9 +52,8 @@ public class UIManager : MonoBehaviour
         inventory.SetActive(true);
     }
 
-    private void PopulateInventory()
+    public void PopulateInventory()
     {
-        uiSlots[0].Select();
         for (int i = 0; i < uiSlots.Length; i++)
         {
             uiSlots[i].FillInventorySlot(PlayerController.instance.inventory[i]);
@@ -66,6 +65,36 @@ public class UIManager : MonoBehaviour
         itemName.text = item.itemName;
         itemDesc.text = item.itemDesc;
         //Mudar mesh do proxy
+    }
+
+    public void HideItemOptions()
+    {
+        for (int i = 0; i < uiSlots.Length; i++)
+        {
+            uiSlots[i].ShowItemOptions(false);
+        }
+    }
+
+    public void ChangeSlotContents(int slot1, int slot2)
+    {
+        InventoryItem item1 = new InventoryItem();
+        InventoryItem item2 = new InventoryItem();
+        item1.itemName = PlayerController.instance.inventory[slot1].itemName;
+        item1.itemDesc = PlayerController.instance.inventory[slot1].itemDesc;
+        item1.type = PlayerController.instance.inventory[slot1].type;
+        item1.ammount = PlayerController.instance.inventory[slot1].ammount;
+        item1.sprite = PlayerController.instance.inventory[slot1].sprite;
+        item1.mesh = PlayerController.instance.inventory[slot1].mesh;
+        item2.itemName = PlayerController.instance.inventory[slot2].itemName;
+        item2.itemDesc = PlayerController.instance.inventory[slot2].itemDesc;
+        item2.type = PlayerController.instance.inventory[slot2].type;
+        item2.ammount = PlayerController.instance.inventory[slot2].ammount;
+        item2.sprite = PlayerController.instance.inventory[slot2].sprite;
+        item2.mesh = PlayerController.instance.inventory[slot2].mesh;
+
+        PlayerController.instance.inventory[slot1] = item2;
+        PlayerController.instance.inventory[slot2] = item1;
+        PopulateInventory();
     }
 
     public void CloseInventory()
