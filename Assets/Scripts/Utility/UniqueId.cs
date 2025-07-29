@@ -23,6 +23,6 @@ public class UniqueId : MonoBehaviour
 
     protected virtual void Start()
     {
-        if (GameManager.instance.collectedItems.Contains(UUID)) Destroy(gameObject);
+        if (GameManager.instance.usedUUIDs.Contains(UUID)) Destroy(gameObject);
     }
 }
