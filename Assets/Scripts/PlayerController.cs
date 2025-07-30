@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion desiredRotation;
     private float lerpTimer = .2f;
     private Coroutine lerpCoroutine;
+    [SerializeField] private bool isInMainMenu;
 
     //Interactable
     private GameObject currentInteractable;
@@ -52,6 +53,22 @@ public class PlayerController : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody>();
         speed = walkingSpeed;
+        if (!isInMainMenu) SetInputs();
+        else
+        {
+            animator.SetFloat("WakeMultiplier", 0);
+            animator.Play("ANIM_StandingUp");
+        }
+    }
+
+    public void GetUp()
+    {
+        animator.SetFloat("WakeMultiplier", 1);
+        Invoke("SetInputs", 12);
+    }
+
+    private void SetInputs()
+    {
         playerInputActions.FindAction("Move").performed += SetMovement;
         playerInputActions.FindAction("Move").canceled += SetMovement;
         playerInputActions.FindAction("Interact").performed += SetInteraction;
