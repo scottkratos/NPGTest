@@ -54,14 +54,11 @@ public class UISlot : Selectable, IPointerClickHandler, IDropHandler
                 //Send error message
                 break;
             case CollectableType.Weapon:
-                EquipItem();
+                PlayerController.instance.EquipWeapon();
+                UIManager.instance.HideItemOptions();
+                //Show equipped feedback
                 break;
         }
-    }
-
-    public void EquipItem()
-    {
-        equip.text = "Equipped";
     }
 
     public void ShowItemOptions(bool show)
@@ -90,6 +87,7 @@ public class UISlot : Selectable, IPointerClickHandler, IDropHandler
         else UIManager.instance.ChangeBoxAndInventoryContents(drag.dragIndex, slotIndex, drag.isInventory);
 
         UIManager.instance.ShowItemInformation(currentItem);
+        //Hide equip feedback;
     }
 
     public override void OnPointerEnter(PointerEventData eventData)

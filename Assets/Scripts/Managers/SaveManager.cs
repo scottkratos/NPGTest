@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);

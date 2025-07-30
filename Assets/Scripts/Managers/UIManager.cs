@@ -27,7 +27,14 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            transform.SetParent(null);
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
+
         StartCoroutine(Fade(false));
         for (int i = 0; i < GameManager.instance.boxItems.Length; i++)
         {

@@ -25,8 +25,19 @@ public class PlayerController : MonoBehaviour
     public InventoryItem[] inventory;
     public InventoryItem[] maxItemTypeBySlot;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
     [Header("Combat")]
     [SerializeField] private int health;
+    private bool isAiming;
+    [SerializeField] private LayerMask layerMask;
+    private bool isWeaponEquipped;
+
+    [Header("References")]
+    [SerializeField] private GameObject flashLight;
+    [SerializeField] private GameObject weapon;
+
 
     public static PlayerController instance;
 
@@ -35,6 +46,7 @@ public class PlayerController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
@@ -49,6 +61,21 @@ public class PlayerController : MonoBehaviour
         playerInputActions.FindAction("Sprint").canceled += SetSprint;
         playerInputActions.FindAction("Inventory").performed += SetInventory;
         playerInputActions.FindAction("Inventory").canceled += SetInventory;
+        playerInputActions.FindAction("Aim").performed += SetAim;
+        playerInputActions.FindAction("Aim").canceled += SetAim;
+        playerInputActions.FindAction("Shoot").performed += SetShoot;
+        playerInputActions.FindAction("Shoot").canceled += SetShoot;
+        playerInputActions.FindAction("Flashlight").performed += SetFlashlight;
+        playerInputActions.FindAction("Flashlight").canceled += SetFlashlight;
+    }
+
+    private void Update()
+    {
+        animator.SetFloat("Speed", rb.linearVelocity.magnitude);
+        animator.SetFloat("WalkingMultiplier", rb.linearVelocity.magnitude / 4.88f);
+        animator.SetInteger("Health", health);
+        animator.SetBool("IsAiming", isWeaponEquipped && isAiming);
+        if (isAiming) Aim();
     }
 
     public void SetMovement(InputAction.CallbackContext value)
@@ -75,14 +102,59 @@ public class PlayerController : MonoBehaviour
         if (value.ReadValueAsButton()) GameManager.instance.OpenInventory();
     }
 
+    public void SetAim(InputAction.CallbackContext value)
+    {
+        isAiming = value.ReadValueAsButton();
+    }
+
+    public void SetShoot(InputAction.CallbackContext value)
+    {
+        if (isAiming && value.ReadValueAsButton()) GameManager.instance.OpenInventory();
+    }
+
+    public void SetFlashlight(InputAction.CallbackContext value)
+    {
+        if (value.ReadValueAsButton()) flashLight.SetActive(!flashLight.activeSelf);
+    }
+
+    private void Aim()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
+        {
+            Vector3 targetPosition = hit.point;
+            Vector3 direction = targetPosition - transform.position;
+            direction.y = 0;
+            transform.rotation = Quaternion.Euler(0, (Mathf.Atan2(-direction.z, direction.x) * Mathf.Rad2Deg) + 90, 0);
+        }
+    }
+
+    public void EquipWeapon()
+    {
+        isWeaponEquipped = !isWeaponEquipped;
+        weapon.SetActive(isWeaponEquipped);
+    }
+
+    public void ForceUnequip()
+    {
+        isWeaponEquipped = false;
+        weapon.SetActive(isWeaponEquipped);
+    }
+
+    private void Shoot()
+    {
+        if (!isWeaponEquipped) return;
+    }
+
     private void FixedUpdate()
     {
+        if (isAiming) return;
         rb.linearVelocity = new Vector3(movement.x * speed, rb.linearVelocity.y, movement.y * speed);
         if (movement.magnitude > 0.1f)
         {
-            if (desiredRotation != Quaternion.Euler(0, Mathf.Atan2(-movement.y, movement.x) * Mathf.Rad2Deg - 90, 0))
+            if (transform.localRotation != Quaternion.Euler(0, Mathf.Atan2(-movement.y, movement.x) * Mathf.Rad2Deg + 90, 0))
             {
-                desiredRotation = Quaternion.Euler(0, Mathf.Atan2(-movement.y, movement.x) * Mathf.Rad2Deg - 90, 0);
+                desiredRotation = Quaternion.Euler(0, Mathf.Atan2(-movement.y, movement.x) * Mathf.Rad2Deg + 90, 0);
                 if (lerpCoroutine != null) StopCoroutine(lerpCoroutine);
                 StartCoroutine(LerpRotation());
             }

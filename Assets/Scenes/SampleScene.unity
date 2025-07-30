@@ -239,6 +239,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 54394385249603175, guid: 5d88953c84a1d90428f86206947d9396, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.870001
+      objectReference: {fileID: 0}
+    - target: {fileID: 54394385249603175, guid: 5d88953c84a1d90428f86206947d9396, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.9282026
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942270490690003148, guid: 5d88953c84a1d90428f86206947d9396, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3464024218643590854, guid: 5d88953c84a1d90428f86206947d9396, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -278,6 +290,14 @@ PrefabInstance:
     - target: {fileID: 3464024218643590854, guid: 5d88953c84a1d90428f86206947d9396, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033909494451339283, guid: 5d88953c84a1d90428f86206947d9396, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.870001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033909494451339283, guid: 5d88953c84a1d90428f86206947d9396, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.9282026
       objectReference: {fileID: 0}
     - target: {fileID: 6500594337232124633, guid: 5d88953c84a1d90428f86206947d9396, type: 3}
       propertyPath: m_Name
@@ -354,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: item.type
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: item.sprite
@@ -366,11 +386,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: item.itemDesc
-      value: Used to restore health
+      value: Used to defend yoursef
       objectReference: {fileID: 0}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: item.itemName
-      value: Medkit
+      value: Pistol
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
