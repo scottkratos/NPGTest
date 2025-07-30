@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Game/Airlock.unity
+    guid: 7be6bb77a7bcc9044bcb5f5c2c39361a
+  - enabled: 1
+    path: Assets/Scenes/Game/SouthCorridor.unity
+    guid: 6601557219e8afd41b30f3055c551379
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: dab3bca3e3013fa4ca70ad3b27892e5e, type: 2}
   m_UseUCBPForAssetBundles: 0

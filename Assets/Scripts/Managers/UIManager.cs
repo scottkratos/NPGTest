@@ -33,7 +33,11 @@ public class UIManager : MonoBehaviour
             transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
         }
-        else Destroy(gameObject);
+        else
+        {
+            instance.StartCoroutine(instance.Fade(false));
+            Destroy(gameObject);
+        }
 
         StartCoroutine(Fade(false));
         for (int i = 0; i < GameManager.instance.boxItems.Length; i++)
@@ -71,7 +75,12 @@ public class UIManager : MonoBehaviour
         }
 
         image.color = new Color(image.color.r, image.color.g, image.color.b, fadeIn ? 1 : 0);
-        blackScreen.SetActive(false);
+        if (!fadeIn) blackScreen.SetActive(false);
+    }
+
+    public void StartLoading()
+    {
+        StartCoroutine(Fade(true));
     }
 
     //Inventory Management

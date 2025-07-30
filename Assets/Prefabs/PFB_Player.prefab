@@ -44,10 +44,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 8.03
-  m_SpotAngle: 17.266953
-  m_InnerSpotAngle: 12.469986
+  m_Intensity: 10
+  m_Range: 12.17
+  m_SpotAngle: 151.03514
+  m_InnerSpotAngle: 123.565544
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
@@ -242,6 +242,7 @@ MonoBehaviour:
     mesh: {fileID: 0}
   animator: {fileID: 7846280396216856683}
   maxHeadAngle: 90
+  isInLevelTransition: 0
   health: 100
   layerMask:
     serializedVersion: 2

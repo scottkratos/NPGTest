@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public string lastLevel;
     [HideInInspector] public Vector3 lastPosition;
     [HideInInspector] public InventoryItem[] playerInventory;
+    [HideInInspector] public string doorUUID;
+    private string levelToLoad;
 
     private void Awake()
     {
@@ -43,5 +45,18 @@ public class GameManager : MonoBehaviour
         else UIManager.instance.OpenBox();
 
         isPaused = !isPaused;
+    }
+
+    public void LoadLevel(string level, string _doorUUID)
+    {
+        doorUUID = _doorUUID;
+        levelToLoad = level;
+        UIManager.instance.StartLoading();
+        Invoke("StartLoading", 1);
+    }
+
+    private void StartLoading()
+    {
+        SceneManager.LoadScene(levelToLoad);
     }
 }

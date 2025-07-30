@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UniqueId : MonoBehaviour
 {
-    [SerializeField] private string UUID;
+    [SerializeField] protected string UUID;
 
     public static string GenerateUniqueID(int min = 11, int max = 17)
     {

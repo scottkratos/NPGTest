@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHeadAngle;
     private Quaternion lastHeadRotation;
     private float headReset = 2f;
+    [HideInInspector] public bool isInLevelTransition;
 
     [Header("Combat")]
     [SerializeField] private int health;
@@ -48,14 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            transform.SetParent(null);
-            DontDestroyOnLoad(gameObject);
-        }
-        else Destroy(gameObject);
-
+        instance = this;
         rb = GetComponent<Rigidbody>();
         speed = walkingSpeed;
         playerInputActions.FindAction("Move").performed += SetMovement;
@@ -76,8 +70,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("Speed", rb.linearVelocity.magnitude);
-        animator.SetFloat("WalkingMultiplier", Mathf.Min(speed - walkingSpeed, 0.5f) + 1);
+        animator.SetFloat("Speed", movement.magnitude * (isAiming || isInLevelTransition ? 0 : 1));
+        animator.SetFloat("WalkingMultiplier", Mathf.Min(speed - walkingSpeed, 1f) + 1);
         animator.SetInteger("Health", health);
         animator.SetBool("IsAiming", isWeaponEquipped && isAiming);
         //Injury Layer
@@ -90,6 +84,7 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         if (isAiming) return;
+        if (isInLevelTransition) return;
         if (objectOfInterest != null)
         {
             Vector3 direction = (objectOfInterest.transform.position - neck.transform.position).normalized;
@@ -203,6 +198,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (isAiming) return;
+        if (isInLevelTransition) return;
         if (health <= 0) return;
         rb.linearVelocity = new Vector3(movement.x * speed, rb.linearVelocity.y, movement.y * speed);
         if (movement.magnitude > 0.1f)
@@ -275,5 +271,23 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInputActions.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        playerInputActions.FindAction("Move").performed -= SetMovement;
+        playerInputActions.FindAction("Move").canceled -= SetMovement;
+        playerInputActions.FindAction("Interact").performed -= SetInteraction;
+        playerInputActions.FindAction("Interact").canceled -= SetInteraction;
+        playerInputActions.FindAction("Sprint").performed -= SetSprint;
+        playerInputActions.FindAction("Sprint").canceled -= SetSprint;
+        playerInputActions.FindAction("Inventory").performed -= SetInventory;
+        playerInputActions.FindAction("Inventory").canceled -= SetInventory;
+        playerInputActions.FindAction("Aim").performed -= SetAim;
+        playerInputActions.FindAction("Aim").canceled -= SetAim;
+        playerInputActions.FindAction("Shoot").performed -= SetShoot;
+        playerInputActions.FindAction("Shoot").canceled -= SetShoot;
+        playerInputActions.FindAction("Flashlight").performed -= SetFlashlight;
+        playerInputActions.FindAction("Flashlight").canceled -= SetFlashlight;
     }
 }
