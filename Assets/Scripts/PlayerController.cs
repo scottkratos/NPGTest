@@ -68,6 +68,11 @@ public class PlayerController : MonoBehaviour
         Invoke("SetInputs", 12);
     }
 
+    public void StopMovement()
+    {
+        movement = Vector2.zero;
+    }
+
     private void SetInputs()
     {
         playerInputActions.FindAction("Move").performed += SetMovement;

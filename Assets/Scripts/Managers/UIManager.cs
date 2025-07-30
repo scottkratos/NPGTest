@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < GameManager.instance.boxItems.Length; i++)
         {
             GameObject slot = Instantiate(slotPrefab, boxPanel.transform.GetChild(0));
-            slot.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, 100);
+            slot.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 180);
             boxUISlots.Add(slot.GetComponent<UISlot>());
         }
 
@@ -66,7 +66,7 @@ public class UIManager : MonoBehaviour
         //Hack to make the text work instead of checking for damage / heal
         if (PlayerController.instance.health >= 75) healthText.text = "Fine";
         else if (PlayerController.instance.health < 75 && PlayerController.instance.health > 25) healthText.text = "Caution";
-        else if (PlayerController.instance.health >= 25) healthText.text = "Danger";
+        else if (PlayerController.instance.health <= 25) healthText.text = "Danger";
     }
 
     //BlackScreen management

@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         else UIManager.instance.OpenInventory();
 
         isPaused = !isPaused;
+        if (isPaused) PlayerController.instance.StopMovement();
     }
 
     public void OpenBox()
