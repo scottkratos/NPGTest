@@ -148,7 +148,6 @@ MonoBehaviour:
   playerInputActions: {fileID: -944628639613478452, guid: 0223e0786ca297d40bb750185105fc3b, type: 3}
   walkingSpeed: 3
   sprintingSpeed: 5
-  currentInteractable: {fileID: 0}
   inventory:
   - itemName: 
     itemDesc: 
@@ -218,12 +217,14 @@ MonoBehaviour:
     sprite: {fileID: 0}
     mesh: {fileID: 0}
   animator: {fileID: 7846280396216856683}
+  maxHeadAngle: 90
   health: 100
   layerMask:
     serializedVersion: 2
     m_Bits: 1
   flashLight: {fileID: 2092023464368266207}
   weapon: {fileID: 7820883009763832292}
+  neck: {fileID: 1002719452128605636}
 --- !u!136 &7384031738499581794
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d405ae7d6f5535d44a372ec13517a9e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.934
+      value: -1.049
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d405ae7d6f5535d44a372ec13517a9e9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -745,6 +746,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7846280396216856683}
   m_SourcePrefab: {fileID: 100100000, guid: d405ae7d6f5535d44a372ec13517a9e9, type: 3}
+--- !u!1 &1002719452128605636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5195048882033904264, guid: d405ae7d6f5535d44a372ec13517a9e9, type: 3}
+  m_PrefabInstance: {fileID: 4183028867070148796}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2574007700870414196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: d405ae7d6f5535d44a372ec13517a9e9, type: 3}
@@ -764,7 +770,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3948657719642619373}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: d405ae7d6f5535d44a372ec13517a9e9, type: 3}
   m_Controller: {fileID: 9100000, guid: 307ca6f552f983a489e652adf4ac4ecb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0

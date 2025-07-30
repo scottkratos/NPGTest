@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 227d9779b0d18744f9e34b094aed7f7e
+guid: f5c3573ebbb6380489a3395bd65e7978
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: ANIM_Walking
-      takeName: mixamo.com
-      internalID: -203655887218126122
+      name: ANIM_PistolMask
+      takeName: Take 001
+      internalID: 1827226128182048838
       firstFrame: 0
-      lastFrame: 62
+      lastFrame: 160
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

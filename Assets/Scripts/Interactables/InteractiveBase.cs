@@ -12,7 +12,7 @@ public class InteractiveBase : UniqueId, IInteractable
         if (other.GetComponent<PlayerController>() != null)
         {
             PlayerController player = other.GetComponent<PlayerController>();
-            player.currentInteractable = gameObject;
+            player.SetInteractable(gameObject);
         }
     }
 
@@ -21,7 +21,7 @@ public class InteractiveBase : UniqueId, IInteractable
         if (other.GetComponent<PlayerController>() != null)
         {
             PlayerController player = other.GetComponent<PlayerController>();
-            if (player.currentInteractable == gameObject) player.currentInteractable = null;
+            player.RemoveInteractable(gameObject);
         }
     }
 }

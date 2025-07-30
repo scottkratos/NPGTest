@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine lerpCoroutine;
 
     //Interactable
-    [HideInInspector] public GameObject currentInteractable;
+    private GameObject currentInteractable;
+    private GameObject objectOfInterest;
 
     [Header("Inventory")]
     public InventoryItem[] inventory;
@@ -27,6 +28,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
+    [SerializeField] private float maxHeadAngle;
+    private Quaternion lastHeadRotation;
+    private float headReset = 2f;
 
     [Header("Combat")]
     [SerializeField] private int health;
@@ -37,6 +41,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject flashLight;
     [SerializeField] private GameObject weapon;
+    [SerializeField] private GameObject neck;
 
 
     public static PlayerController instance;
@@ -72,10 +77,39 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         animator.SetFloat("Speed", rb.linearVelocity.magnitude);
-        animator.SetFloat("WalkingMultiplier", rb.linearVelocity.magnitude / 4.88f);
+        animator.SetFloat("WalkingMultiplier", Mathf.Min(speed - walkingSpeed, 0.5f) + 1);
         animator.SetInteger("Health", health);
         animator.SetBool("IsAiming", isWeaponEquipped && isAiming);
+        //Injury Layer
+        animator.SetLayerWeight(1, health <= 50 && !isAiming ? 1 : 0);
+        //Weapon Layer
+        animator.SetLayerWeight(2, health > 50 && !isAiming && isWeaponEquipped ? 1 : 0);
         if (isAiming) Aim();
+    }
+
+    private void LateUpdate()
+    {
+        if (isAiming) return;
+        if (objectOfInterest != null)
+        {
+            Vector3 direction = (objectOfInterest.transform.position - neck.transform.position).normalized;
+            float angle = Vector3.SignedAngle(direction, transform.forward, transform.up);
+            if (angle <= maxHeadAngle && angle >= -maxHeadAngle)
+            {
+                neck.transform.LookAt(objectOfInterest.transform);
+                lastHeadRotation = neck.transform.rotation;
+                headReset = 2f;
+            }
+            else
+            {
+                if (headReset > 0)
+                {
+                    lastHeadRotation = Quaternion.Slerp(lastHeadRotation, neck.transform.rotation, headReset * Time.deltaTime);
+                    neck.transform.rotation = lastHeadRotation;
+                    headReset -= Time.deltaTime;
+                }
+            }
+        }
     }
 
     public void SetMovement(InputAction.CallbackContext value)
@@ -146,9 +180,30 @@ public class PlayerController : MonoBehaviour
         if (!isWeaponEquipped) return;
     }
 
+    public void SetObjectOfInterest(GameObject ooi)
+    {
+        objectOfInterest = ooi;
+    }
+
+    public void RemoveObjectOfInterest(GameObject ooi)
+    {
+        if (objectOfInterest == ooi) objectOfInterest = null;
+    }
+
+    public void SetInteractable(GameObject interactable)
+    {
+        currentInteractable = interactable;
+    }
+
+    public void RemoveInteractable(GameObject interactable)
+    {
+        if (currentInteractable == interactable) currentInteractable = null;
+    }
+
     private void FixedUpdate()
     {
         if (isAiming) return;
+        if (health <= 0) return;
         rb.linearVelocity = new Vector3(movement.x * speed, rb.linearVelocity.y, movement.y * speed);
         if (movement.magnitude > 0.1f)
         {

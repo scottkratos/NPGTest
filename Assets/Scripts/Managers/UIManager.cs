@@ -128,6 +128,7 @@ public class UIManager : MonoBehaviour
         PlayerController.instance.inventory[slot1] = item2;
         PlayerController.instance.inventory[slot2] = item1;
         PopulateInventory();
+        if (item1.type == CollectableType.Weapon || item2.type == CollectableType.Weapon) PlayerController.instance.ForceUnequip();
     }
 
     public void CloseInventory()
@@ -176,6 +177,7 @@ public class UIManager : MonoBehaviour
         GameManager.instance.boxItems[slot1] = item2;
         GameManager.instance.boxItems[slot2] = item1;
         PopulateBox();
+        if (item1.type == CollectableType.Weapon || item2.type == CollectableType.Weapon) PlayerController.instance.ForceUnequip();
     }
 
     public void ChangeBoxAndInventoryContents(int slot1, int slot2, bool isAInventory)
@@ -208,5 +210,6 @@ public class UIManager : MonoBehaviour
         
         PopulateInventory();
         PopulateBox();
+        if (item1.type == CollectableType.Weapon || item2.type == CollectableType.Weapon) PlayerController.instance.ForceUnequip();
     }
 }
