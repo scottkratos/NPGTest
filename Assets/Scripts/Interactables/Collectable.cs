@@ -7,7 +7,7 @@ public class Collectable : InteractiveBase
     protected override void Start()
     {
         base.Start();
-        item.mesh = GetComponent<MeshFilter>().mesh;
+        item.mesh = GetComponentInChildren<MeshFilter>().mesh;
     }
 
     public override void Use(PlayerController player)
