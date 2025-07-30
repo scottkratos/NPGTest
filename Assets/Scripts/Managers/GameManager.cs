@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private bool isPaused;
+    public bool isPaused;
     public InventoryItem[] boxItems;
     public List<string> usedUUIDs = new List<string>();
     [HideInInspector] public string lastLevel;
@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public InventoryItem[] playerInventory;
     [HideInInspector] public string doorUUID;
     private string levelToLoad;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip[] audioClips;
+    private int audioIndex;
+    private bool isAlternating;
 
     private void Awake()
     {
@@ -58,5 +62,29 @@ public class GameManager : MonoBehaviour
     private void StartLoading()
     {
         SceneManager.LoadScene(levelToLoad);
+    }
+
+    private void Update()
+    {
+        //Hack solution to audio problem
+        if (!audioSource.isPlaying)
+        {
+            if (isAlternating)
+            {
+                audioIndex++;
+                if (audioIndex >= audioClips.Length) audioIndex = 0;
+                audioSource.clip = audioClips[audioIndex];
+                audioSource.Play();
+            }
+            else
+            {
+                if (SceneManager.GetActiveScene().name != "MainMenu")
+                {
+                    isAlternating = true;
+                    audioSource.clip = audioClips[audioIndex];
+                    audioSource.Play();
+                }
+            }
+        }
     }
 }

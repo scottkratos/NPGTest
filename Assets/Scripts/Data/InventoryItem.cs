@@ -9,4 +9,5 @@ public struct InventoryItem
     public int ammount;
     public Sprite sprite;
     [HideInInspector] public Mesh mesh;
+    [HideInInspector] public Material material;
 }

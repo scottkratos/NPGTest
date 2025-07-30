@@ -8,6 +8,7 @@ public class Collectable : InteractiveBase
     {
         base.Start();
         item.mesh = GetComponentInChildren<MeshFilter>().mesh;
+        item.material = GetComponentInChildren<MeshRenderer>().material;
     }
 
     public override void Use(PlayerController player)

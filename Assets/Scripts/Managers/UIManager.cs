@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour
     {
         itemName.text = item.itemName;
         itemDesc.text = item.itemDesc;
-        //Mudar mesh do proxy
+        ItemProxy.instance.ChangeMesh(item.mesh, item.material);
     }
 
     public void HideItemOptions()

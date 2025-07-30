@@ -33,6 +33,8 @@ public class UISlot : Selectable, IPointerClickHandler, IDropHandler
     {
         currentItem = item;
         icon.sprite = item.sprite;
+        if (icon.sprite == null) icon.color = new Color(1, 1, 1, 0);
+        else icon.color = new Color(1, 1, 1, 1);
         if (item.type == CollectableType.PistolAmmo) value.text = item.ammount.ToString();
         else value.text = string.Empty;
     }

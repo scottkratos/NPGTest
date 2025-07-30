@@ -126,7 +126,8 @@ public class PlayerController : MonoBehaviour
 
     public void SetMovement(InputAction.CallbackContext value)
     {
-        movement = value.ReadValue<Vector2>();
+        if (GameManager.instance.isPaused) movement = Vector2.zero;
+        else movement = value.ReadValue<Vector2>();
     }
 
     public void SetInteraction(InputAction.CallbackContext value)
