@@ -123,6 +123,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
+      propertyPath: item.gui
+      value: 
+      objectReference: {fileID: 11400000, guid: 7957105e20f144f4d8d17f76356a44e4, type: 2}
+    - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: item.type
       value: 2
       objectReference: {fileID: 0}
@@ -132,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 2065577421, guid: b5b80544d4e28c54ca17107b4b5fb510, type: 3}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: item.ammount
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: item.itemDesc

@@ -33,12 +33,13 @@ public class PlayerController : MonoBehaviour
     private Quaternion lastHeadRotation;
     private float headReset = 2f;
     [HideInInspector] public bool isInLevelTransition;
+    [HideInInspector] public bool isWaking = true;
 
     [Header("Combat")]
-    [SerializeField] private int health;
+    [SerializeField] public int health;
     private bool isAiming;
     [SerializeField] private LayerMask layerMask;
-    private bool isWeaponEquipped;
+    [HideInInspector] public bool isWeaponEquipped;
 
     [Header("References")]
     [SerializeField] private GameObject flashLight;
@@ -83,6 +84,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.FindAction("Shoot").canceled += SetShoot;
         playerInputActions.FindAction("Flashlight").performed += SetFlashlight;
         playerInputActions.FindAction("Flashlight").canceled += SetFlashlight;
+        isWaking = false;
     }
 
     private void Update()
@@ -91,6 +93,7 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("WalkingMultiplier", Mathf.Min(speed - walkingSpeed, 1f) + 1);
         animator.SetInteger("Health", health);
         animator.SetBool("IsAiming", isWeaponEquipped && isAiming);
+        if (isWaking) return;
         //Injury Layer
         animator.SetLayerWeight(1, health <= 50 && !isAiming ? 1 : 0);
         //Weapon Layer
@@ -156,7 +159,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetShoot(InputAction.CallbackContext value)
     {
-        if (isAiming && value.ReadValueAsButton()) GameManager.instance.OpenInventory();
+        if (isAiming && value.ReadValueAsButton()) Shoot();
     }
 
     public void SetFlashlight(InputAction.CallbackContext value)
@@ -191,6 +194,7 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         if (!isWeaponEquipped) return;
+        //Need to do the weapon logic here
     }
 
     public void SetObjectOfInterest(GameObject ooi)
@@ -293,6 +297,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (instance == null) return;
         playerInputActions.FindAction("Move").performed -= SetMovement;
         playerInputActions.FindAction("Move").canceled -= SetMovement;
         playerInputActions.FindAction("Interact").performed -= SetInteraction;

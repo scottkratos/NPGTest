@@ -157,8 +157,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7bcad279393e9c34885c8024334b3944, type: 2}
+  m_sharedMaterial: {fileID: 6928278856429131964, guid: 7bcad279393e9c34885c8024334b3944, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -319,6 +319,7 @@ MonoBehaviour:
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   isPlayerInventory: 0
 --- !u!222 &1126508724894405914
 CanvasRenderer:

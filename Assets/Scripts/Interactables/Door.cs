@@ -16,6 +16,7 @@ public class Door : InteractiveBase
 
     public override void Use(PlayerController player)
     {
+        if (key != string.Empty) return;
         base.Use(player);
         player.isInLevelTransition = true;
         StartCoroutine(MoveDoor(true));

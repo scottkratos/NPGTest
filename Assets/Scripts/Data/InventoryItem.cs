@@ -7,7 +7,4 @@ public struct InventoryItem
     public string itemDesc;
     public CollectableType type;
     public int ammount;
-    public Sprite sprite;
-    [HideInInspector] public Mesh mesh;
-    [HideInInspector] public Material material;
 }

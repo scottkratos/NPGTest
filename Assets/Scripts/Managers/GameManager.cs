@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip[] audioClips;
     private int audioIndex;
     private bool isAlternating;
+    [HideInInspector] public int playerHealth;
+    [HideInInspector] public bool playerWeaponEquipped;
+    private bool needToSetPosition;
 
     private void Awake()
     {
@@ -32,7 +35,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         lastLevel = SceneManager.GetActiveScene().name;
-        if (playerInventory.Length > 0 && PlayerController.instance != null) PlayerController.instance.inventory = playerInventory;
     }
 
     public void OpenInventory()
@@ -55,13 +57,38 @@ public class GameManager : MonoBehaviour
     {
         doorUUID = _doorUUID;
         levelToLoad = level;
+        playerHealth = PlayerController.instance.health;
+        playerInventory = PlayerController.instance.inventory;
+        playerWeaponEquipped = PlayerController.instance.isWeaponEquipped;
+        UIManager.instance.StartLoading();
+        Invoke("StartLoading", 1);
+    }
+
+    public void LoadLevel(string level)
+    {
+        levelToLoad = level;
+        needToSetPosition = true;
         UIManager.instance.StartLoading();
         Invoke("StartLoading", 1);
     }
 
     private void StartLoading()
     {
-        SceneManager.LoadScene(levelToLoad);
+        lastLevel = levelToLoad;
+        SceneManager.LoadSceneAsync(levelToLoad, LoadSceneMode.Single).completed += SetPlayerStuff;
+    }
+
+    private void SetPlayerStuff(AsyncOperation asyncOp)
+    {
+        //Hack to save player stuff
+        PlayerController.instance.health = instance.playerHealth;
+        PlayerController.instance.inventory = instance.playerInventory;
+        PlayerController.instance.isWeaponEquipped = instance.playerWeaponEquipped;
+        if (needToSetPosition)
+        {
+            PlayerController.instance.gameObject.transform.position = lastPosition;
+            needToSetPosition = false;
+        }
     }
 
     private void Update()

@@ -29,13 +29,13 @@ public class UISlot : Selectable, IPointerClickHandler, IDropHandler
         GetComponentInChildren<UIDraggable>().dragIndex = slotIndex;
     }
 
-    public void FillInventorySlot(InventoryItem item)
+    public void FillInventorySlot(InventoryItem item, InventoryItemGUI gui)
     {
         currentItem = item;
-        icon.sprite = item.sprite;
+        icon.sprite = gui.sprite;
         if (icon.sprite == null) icon.color = new Color(1, 1, 1, 0);
         else icon.color = new Color(1, 1, 1, 1);
-        if (item.type == CollectableType.PistolAmmo) value.text = item.ammount.ToString();
+        if (item.type == CollectableType.PistolAmmo || item.type == CollectableType.Weapon) value.text = item.ammount.ToString();
         else value.text = string.Empty;
     }
 

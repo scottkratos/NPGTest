@@ -4,13 +4,6 @@ public class Collectable : InteractiveBase
 {
     [SerializeField] private InventoryItem item;
 
-    protected override void Start()
-    {
-        base.Start();
-        item.mesh = GetComponentInChildren<MeshFilter>().mesh;
-        item.material = GetComponentInChildren<MeshRenderer>().material;
-    }
-
     public override void Use(PlayerController player)
     {
         base.Use(player);

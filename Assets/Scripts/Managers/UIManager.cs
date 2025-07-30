@@ -14,11 +14,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject boxPanel;
     [SerializeField] private GameObject inventoryGrid;
     [SerializeField] private GameObject slotPrefab;
+    [SerializeField] private TMPro.TextMeshProUGUI healthText;
 
     [Header("Inventory References")]
     private List<UISlot> inventoryUISlots = new List<UISlot>();
     [SerializeField] private TMPro.TextMeshProUGUI itemName;
     [SerializeField] private TMPro.TextMeshProUGUI itemDesc;
+    [SerializeField] private InventoryItemGUI[] gui;
 
     [Header("Box References")]
     private List<UISlot> boxUISlots = new List<UISlot>();
@@ -57,6 +59,14 @@ public class UIManager : MonoBehaviour
 
         PopulateInventory();
         PopulateBox();
+    }
+
+    private void Update()
+    {
+        //Hack to make the text work instead of checking for damage / heal
+        if (PlayerController.instance.health >= 75) healthText.text = "Fine";
+        else if (PlayerController.instance.health < 75 && PlayerController.instance.health > 25) healthText.text = "Caution";
+        else if (PlayerController.instance.health >= 25) healthText.text = "Danger";
     }
 
     //BlackScreen management
@@ -98,7 +108,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < inventoryUISlots.Count; i++)
         {
-            inventoryUISlots[i].FillInventorySlot(PlayerController.instance.inventory[i]);
+            inventoryUISlots[i].FillInventorySlot(PlayerController.instance.inventory[i], gui[(int)PlayerController.instance.inventory[i].type]);
         }
     }
 
@@ -106,7 +116,7 @@ public class UIManager : MonoBehaviour
     {
         itemName.text = item.itemName;
         itemDesc.text = item.itemDesc;
-        ItemProxy.instance.ChangeMesh(item.mesh, item.material);
+        ItemProxy.instance.ChangeMesh(gui[(int)item.type].mesh, gui[(int)item.type].material);
     }
 
     public void HideItemOptions()
@@ -125,14 +135,10 @@ public class UIManager : MonoBehaviour
         item1.itemDesc = PlayerController.instance.inventory[slot1].itemDesc;
         item1.type = PlayerController.instance.inventory[slot1].type;
         item1.ammount = PlayerController.instance.inventory[slot1].ammount;
-        item1.sprite = PlayerController.instance.inventory[slot1].sprite;
-        item1.mesh = PlayerController.instance.inventory[slot1].mesh;
         item2.itemName = PlayerController.instance.inventory[slot2].itemName;
         item2.itemDesc = PlayerController.instance.inventory[slot2].itemDesc;
         item2.type = PlayerController.instance.inventory[slot2].type;
         item2.ammount = PlayerController.instance.inventory[slot2].ammount;
-        item2.sprite = PlayerController.instance.inventory[slot2].sprite;
-        item2.mesh = PlayerController.instance.inventory[slot2].mesh;
 
         PlayerController.instance.inventory[slot1] = item2;
         PlayerController.instance.inventory[slot2] = item1;
@@ -162,7 +168,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < boxUISlots.Count; i++)
         {
-            boxUISlots[i].FillInventorySlot(GameManager.instance.boxItems[i]);
+            boxUISlots[i].FillInventorySlot(GameManager.instance.boxItems[i], gui[(int)GameManager.instance.boxItems[i].type]);
         }
     }
 
@@ -174,14 +180,10 @@ public class UIManager : MonoBehaviour
         item1.itemDesc = GameManager.instance.boxItems[slot1].itemDesc;
         item1.type = GameManager.instance.boxItems[slot1].type;
         item1.ammount = GameManager.instance.boxItems[slot1].ammount;
-        item1.sprite = GameManager.instance.boxItems[slot1].sprite;
-        item1.mesh = GameManager.instance.boxItems[slot1].mesh;
         item2.itemName = GameManager.instance.boxItems[slot2].itemName;
         item2.itemDesc = GameManager.instance.boxItems[slot2].itemDesc;
         item2.type = GameManager.instance.boxItems[slot2].type;
         item2.ammount = GameManager.instance.boxItems[slot2].ammount;
-        item2.sprite = GameManager.instance.boxItems[slot2].sprite;
-        item2.mesh = GameManager.instance.boxItems[slot2].mesh;
 
         GameManager.instance.boxItems[slot1] = item2;
         GameManager.instance.boxItems[slot2] = item1;
@@ -197,14 +199,10 @@ public class UIManager : MonoBehaviour
         item1.itemDesc = isAInventory ? PlayerController.instance.inventory[slot1].itemDesc : GameManager.instance.boxItems[slot1].itemDesc;
         item1.type = isAInventory ? PlayerController.instance.inventory[slot1].type : GameManager.instance.boxItems[slot1].type;
         item1.ammount = isAInventory ? PlayerController.instance.inventory[slot1].ammount : GameManager.instance.boxItems[slot1].ammount;
-        item1.sprite = isAInventory ? PlayerController.instance.inventory[slot1].sprite : GameManager.instance.boxItems[slot1].sprite;
-        item1.mesh = isAInventory ? PlayerController.instance.inventory[slot1].mesh : GameManager.instance.boxItems[slot1].mesh;
         item2.itemName = isAInventory ? GameManager.instance.boxItems[slot2].itemName : PlayerController.instance.inventory[slot2].itemName;
         item2.itemDesc = isAInventory ? GameManager.instance.boxItems[slot2].itemDesc : PlayerController.instance.inventory[slot2].itemDesc;
         item2.type = isAInventory ? GameManager.instance.boxItems[slot2].type : PlayerController.instance.inventory[slot2].type;
         item2.ammount = isAInventory ? GameManager.instance.boxItems[slot2].ammount : PlayerController.instance.inventory[slot2].ammount;
-        item2.sprite = isAInventory ? GameManager.instance.boxItems[slot2].sprite : PlayerController.instance.inventory[slot2].sprite;
-        item2.mesh = isAInventory ? GameManager.instance.boxItems[slot2].mesh : PlayerController.instance.inventory[slot2].mesh;
 
         if (isAInventory)
         {

@@ -139,6 +139,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
+      propertyPath: item.gui
+      value: 
+      objectReference: {fileID: 11400000, guid: ea59601ce14394641ace733e25d94125, type: 2}
+    - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
+      propertyPath: item.type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5563350375327568802, guid: e319895c787854c4dbee6e3709452e2a, type: 3}
       propertyPath: item.sprite
       value: 
       objectReference: {fileID: -247613635, guid: 9ec141bd472ca4544aa3b661a1643375, type: 3}

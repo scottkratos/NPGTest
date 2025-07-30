@@ -8,7 +8,11 @@ public class PlayerData
     public InventoryItem[] boxItems;
     public List<string> usedUUIDs = new List<string>();
     public string lastLevel;
-    public Vector3 lastPosition;
+    public float lastPositionX;
+    public float lastPositionY;
+    public float lastPositionZ;
+    public bool isWeaponEquipped;
+    public int playerHealth;
 
     public PlayerData()
     {
@@ -16,6 +20,10 @@ public class PlayerData
         boxItems = GameManager.instance.boxItems;
         usedUUIDs = GameManager.instance.usedUUIDs;
         lastLevel = GameManager.instance.lastLevel;
-        lastPosition = GameManager.instance.lastPosition;
+        lastPositionX = PlayerController.instance.gameObject.transform.position.x;
+        lastPositionY = PlayerController.instance.gameObject.transform.position.y;
+        lastPositionZ = PlayerController.instance.gameObject.transform.position.z;
+        isWeaponEquipped = PlayerController.instance.isWeaponEquipped;
+        playerHealth = PlayerController.instance.health;
     }
 }

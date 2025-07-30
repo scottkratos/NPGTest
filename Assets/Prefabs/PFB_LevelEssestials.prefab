@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1856554480377236389}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9063079, z: -0.42261827, w: 0}
-  m_LocalPosition: {x: 0.00000011920933, y: 11.155893, z: -2.4991786}
+  m_LocalPosition: {x: 0.13000011, y: 10.625894, z: -2.8291774}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -197,9 +197,9 @@ Transform:
   m_GameObject: {fileID: 1872513130533597426}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.4298706}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -0.3, z: 1.4298706}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 631169678807210759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshFilter: {fileID: 6490871488754035882}
-  meshRenderer: {fileID: 0}
+  meshRenderer: {fileID: 1691487784814713004}
   proxy: {fileID: 810852758425138101}
 --- !u!20 &7973957926132174744
 Camera:

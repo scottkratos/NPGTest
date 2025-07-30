@@ -3,6 +3,7 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
+    [SerializeField] private GameObject loadBtn;
 
     private void Start()
     {
@@ -13,6 +14,12 @@ public class SaveManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else Destroy(gameObject);
+
+        if (loadBtn != null)
+        {
+            PlayerData data = SaveSystem.LoadPlayer();
+            loadBtn.SetActive(data != null);
+        }
     }
 
     public void SaveCurrentProgress()
@@ -23,10 +30,13 @@ public class SaveManager : MonoBehaviour
     public void LoadProgress()
     {
         PlayerData data = SaveSystem.LoadPlayer();
-        PlayerController.instance.inventory = data.inventoryItems;
+        GameManager.instance.playerInventory = data.inventoryItems;
+        GameManager.instance.playerWeaponEquipped = data.isWeaponEquipped;
+        GameManager.instance.playerHealth = data.playerHealth;
         GameManager.instance.boxItems = data.boxItems;
         GameManager.instance.usedUUIDs = data.usedUUIDs;
         GameManager.instance.lastLevel = data.lastLevel;
-        GameManager.instance.lastPosition = data.lastPosition;
+        GameManager.instance.lastPosition = new Vector3(data.lastPositionX, data.lastPositionY, data.lastPositionZ);
+        GameManager.instance.LoadLevel(data.lastLevel);
     }
 }

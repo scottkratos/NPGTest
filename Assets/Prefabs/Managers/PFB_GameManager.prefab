@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003d11fe246fdbe43903e3b7d4ffeec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0
   boxItems:
   - itemName: 
     itemDesc: 
@@ -52,300 +53,350 @@ MonoBehaviour:
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   - itemName: 
     itemDesc: 
     type: 0
     ammount: 0
     sprite: {fileID: 0}
     mesh: {fileID: 0}
+    material: {fileID: 0}
   usedUUIDs: []
   lastLevel: 
   lastPosition: {x: 0, y: 0, z: 0}
@@ -355,6 +406,8 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: a816defdd32fb41f98b1a4ce36662a3d, type: 3}
   - {fileID: 8300000, guid: 229d0470a4fe446b290af46901aeb1cc, type: 3}
+  playerHealth: 0
+  playerWeaponEquipped: 0
 --- !u!82 &6288217545491135084
 AudioSource:
   m_ObjectHideFlags: 0
@@ -368,7 +421,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b0f62ef8c63d74c87987ae9953d79fbb, type: 3}
   m_Resource: {fileID: 8300000, guid: b0f62ef8c63d74c87987ae9953d79fbb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
