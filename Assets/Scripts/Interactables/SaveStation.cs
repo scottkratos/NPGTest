@@ -6,5 +6,6 @@ public class SaveStation : InteractiveBase
     {
         base.Use(player);
         SaveManager.instance.SaveCurrentProgress();
+        UIManager.instance.ShowSaveGame();
     }
 }

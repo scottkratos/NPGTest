@@ -978,6 +978,7 @@ MonoBehaviour:
   inventoryGrid: {fileID: 3269707246283608572}
   slotPrefab: {fileID: 8044401919561631681, guid: 781dc05098946004abe7bb3c4998c354, type: 3}
   healthText: {fileID: 6265709730109565079}
+  saveText: {fileID: 5763960908067897651}
   itemName: {fileID: 6500213627041027616}
   itemDesc: {fileID: 2270227702869412378}
   gui:
@@ -1165,7 +1166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4387146102415907283
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1213,17 +1214,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Game Saved!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f9d21a2afd32a9a4e8266e7bf6b17442, type: 2}
+  m_sharedMaterial: {fileID: 4323150615992240586, guid: f9d21a2afd32a9a4e8266e7bf6b17442, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1240,8 +1241,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 66.75
+  m_fontSizeBase: 66.75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

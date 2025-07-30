@@ -24,6 +24,7 @@ public class UIDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (originalParent.currentItem.type == CollectableType.None) return;
         transform.SetParent(canvas.transform);
         image.raycastTarget = false;
+        UIManager.instance.HideItemOptions();
     }
 
     public void OnDrag(PointerEventData eventData)

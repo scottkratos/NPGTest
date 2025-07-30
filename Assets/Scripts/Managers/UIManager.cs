@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject inventoryGrid;
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private TMPro.TextMeshProUGUI healthText;
+    [SerializeField] private GameObject saveText;
 
     [Header("Inventory References")]
     private List<UISlot> inventoryUISlots = new List<UISlot>();
@@ -110,6 +111,18 @@ public class UIManager : MonoBehaviour
         {
             inventoryUISlots[i].FillInventorySlot(PlayerController.instance.inventory[i], gui[(int)PlayerController.instance.inventory[i].type]);
         }
+    }
+
+    public void ShowSaveGame()
+    {
+        CancelInvoke("HideSaveGame");
+        saveText.SetActive(true);
+        Invoke("HideSaveGame", 2);
+    }
+
+    private void HideSaveGame()
+    {
+        saveText.SetActive(false);
     }
 
     public void ShowItemInformation(InventoryItem item)
